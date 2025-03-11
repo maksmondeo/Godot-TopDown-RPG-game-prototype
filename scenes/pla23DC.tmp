@@ -1,0 +1,150 @@
+[gd_scene load_steps=16 format=3 uid="uid://bvcsmr7inbyh0"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_7tgs3"]
+[ext_resource type="Texture2D" uid="uid://cnwqag3hcftid" path="res://assets/character.png" id="2_eofdj"]
+[ext_resource type="Texture2D" uid="uid://0vmpy3b5ivua" path="res://assets/sword/sword2.png" id="2_htx5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1cw8"]
+atlas = ExtResource("2_eofdj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bv54"]
+atlas = ExtResource("2_eofdj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0durx"]
+atlas = ExtResource("2_eofdj")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmnx4"]
+atlas = ExtResource("2_eofdj")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q34jx"]
+atlas = ExtResource("2_eofdj")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drght"]
+atlas = ExtResource("2_eofdj")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t42kc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1cw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1cw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1cw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bv54")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0durx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmnx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q34jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drght")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aui23"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_a6dl1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_rnqca"]
+resource_name = "slash"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(2, 0.225313, 0.5, 1),
+"update": 0,
+"values": [-1.5708, -2.44346, 1.5708, -1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gsj0h"]
+_data = {
+"RESET": SubResource("Animation_a6dl1"),
+"slash": SubResource("Animation_rnqca")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7espk"]
+radius = 24.0
+height = 94.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_7tgs3")
+
+[node name="weapon" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("2_htx5w")
+flip_v = true
+
+[node name="weapon_area" type="Area2D" parent="weapon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon/weapon_area"]
+position = Vector2(8.83333, -1.09139e-11)
+
+[node name="player_sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_t42kc")
+animation = &"walk"
+frame_progress = 0.222465
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 33)
+shape = SubResource("CircleShape2D_aui23")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gsj0h")
+}
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_7espk")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

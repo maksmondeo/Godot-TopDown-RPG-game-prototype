@@ -1,0 +1,218 @@
+[gd_scene load_steps=7 format=3 uid="uid://fwjy0k3j1q6f"]
+
+[ext_resource type="Texture2D" uid="uid://cpp3l0hs3iqjw" path="res://assets/ui/inventory.png" id="1_ndfcu"]
+[ext_resource type="Script" path="res://scripts/inventory.gd" id="1_qao2d"]
+
+[sub_resource type="Animation" id="Animation_qwosq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-243, 556)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mhxlj"]
+resource_name = "in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.5),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(-243, 556), Vector2(-243, -164), Vector2(-243, -124)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_65ou4"]
+resource_name = "out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.5),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(-243, -124), Vector2(-243, -164), Vector2(-243, 556)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ywtej"]
+_data = {
+"RESET": SubResource("Animation_qwosq"),
+"in": SubResource("Animation_mhxlj"),
+"out": SubResource("Animation_65ou4")
+}
+
+[node name="inventory" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-243, 556)
+scale = Vector2(3, 3)
+script = ExtResource("1_qao2d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ndfcu")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 84.0
+offset_top = 5.0
+offset_right = 157.0
+offset_bottom = 78.0
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 4
+
+[node name="Slot1" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot2" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot3" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot4" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot5" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot6" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot7" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot8" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot9" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot10" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot11" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot12" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot13" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot14" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot15" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot16" type="TextureRect" parent="GridContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Slot17" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 21.0
+offset_bottom = 21.0
+
+[node name="Slot18" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 5.0
+offset_top = 24.0
+offset_right = 21.0
+offset_bottom = 40.0
+
+[node name="Slot19" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 57.0
+offset_top = 5.0
+offset_right = 73.0
+offset_bottom = 21.0
+
+[node name="Slot20" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 57.0
+offset_top = 24.0
+offset_right = 73.0
+offset_bottom = 40.0
+
+[node name="Slot21" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 32.0
+offset_top = 37.0
+offset_right = 48.0
+offset_bottom = 53.0
+
+[node name="inv_anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ywtej")
+}
